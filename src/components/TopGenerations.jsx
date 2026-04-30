@@ -1,9 +1,9 @@
 import React from 'react';
 
 const TopGenerations = async () => {
-    const res = await fetch('./data.json');
-    const data = await res.json();
-    console.log(data)
+    // const res = await fetch();
+    // const data = await res.json();
+    // console.log(data)
 
     return (
         <div>
