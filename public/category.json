@@ -1,46 +1,51 @@
 [
   {
     "id": 1,
+    "name": "All",
+    "slug": ""
+  },
+  {
+    "id": 2,
     "name": "Sci-Fi",
     "slug": "scifi"
   },
   {
-    "id": 2,
+    "id": 3,
     "name": "Pixel Art",
     "slug": "pixel-art"
   },
   {
-    "id": 3,
+    "id": 4,
     "name": "Fantasy",
     "slug": "fantasy"
   },
   {
-    "id": 4,
+    "id": 5,
     "name": "Cyberpunk",
     "slug": "cyberpunk"
   },
   {
-    "id": 5,
+    "id": 6,
     "name": "Surreal",
     "slug": "surreal"
   },
   {
-    "id": 6,
+    "id": 7,
     "name": "Vaporwave",
     "slug": "vaporwave"
   },
   {
-    "id": 7,
+    "id": 8,
     "name": "Realistic",
     "slug": "realistic"
   },
   {
-    "id": 8,
+    "id": 9,
     "name": "Minimal",
     "slug": "minimal"
   },
   {
-    "id": 9,
+    "id": 10,
     "name": "Steampunk",
     "slug": "steampunk"
   }
