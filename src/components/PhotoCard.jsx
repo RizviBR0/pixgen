@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Card, Chip, CloseButton } from "@heroui/react";
+import { Button, Card, Chip } from "@heroui/react";
 import Image from 'next/image';
 import { HeartFill, ArrowDownToSquare } from '@gravity-ui/icons';
 import Link from 'next/link';
