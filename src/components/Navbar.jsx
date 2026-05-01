@@ -1,11 +1,38 @@
 "use client";
+import { authClient } from "@/lib/auth-client";
+import { Avatar, Button, Dropdown, Label, Skeleton } from "@heroui/react";
 import Image from "next/image";
 import Link from "next/link";
 
 const Navbar = () => {
+    const { data, isPending } = authClient.useSession();
+    const user = data?.user;
+
+    const handleLogout = async () => {
+        await authClient.signOut();
+    }
+
+    if (isPending) {
+        return <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
+            <header className="flex h-14 items-center justify-between px-6">
+                <div className="flex items-center gap-3">
+                    <Skeleton className="h-4 w-20 rounded-lg" />
+                </div>
+
+                <ul className="flex items-center gap-4">
+                    <Skeleton className="h-4 w-20 rounded-lg" />
+                    <Skeleton className="h-4 w-20 rounded-lg" />
+                    <Skeleton className="h-4 w-20 rounded-lg" />
+                </ul>
+
+                <Skeleton className="h-4 w-20 rounded-lg" />
+            </header>
+        </nav>
+    }
+
     return (
         <div className="border-b px-2">
-            <nav className=" flex justify-between items-center  py-3 max-w-7xl mx-auto w-full">
+            <nav className="flex justify-between items-center  py-3 max-w-7xl mx-auto w-full">
                 <div className="flex gap-2 items-center">
                     <Image
                         src={"/logo.png"}
@@ -34,14 +61,31 @@ const Navbar = () => {
                 </ul>
 
                 <div className="flex gap-4">
-                    <ul className="flex items-center text-sm gap-3">
-                        <li className="font-semibold">
-                            <Link href={"/signup"}>SignUp</Link>
-                        </li>
-                        <li className="font-semibold">
-                            <Link href={"/signin"}>SignIn</Link>
-                        </li>
-                    </ul>
+                    {user ?
+                        <Dropdown>
+                            <Button className="bg-transparent border-none p-0" variant="light">
+                                <Avatar size="sm">
+                                    <Avatar.Image className='object-cover object-center' alt={user.name} src={user?.image} referrerPolicy="no-referrer" />
+                                    <Avatar.Fallback>{user.name.charAt(0)}</Avatar.Fallback>
+                                </Avatar>
+                            </Button>
+                            <Dropdown.Popover>
+                                <Dropdown.Menu onAction={(key) => console.log(`Selected: ${key}`)}>
+                                    <Dropdown.Item onClick={handleLogout} id="logout" textValue="Logout" variant="danger">
+                                        <Label>Logout</Label>
+                                    </Dropdown.Item>
+                                </Dropdown.Menu>
+                            </Dropdown.Popover>
+                        </Dropdown>
+                        :
+                        <ul className="flex items-center text-sm gap-3">
+                            <li className="font-semibold">
+                                <Link href={"/signup"}>SignUp</Link>
+                            </li>
+                            <li className="font-semibold">
+                                <Link href={"/signin"}>SignIn</Link>
+                            </li>
+                        </ul>}
                 </div>
             </nav>
         </div>
